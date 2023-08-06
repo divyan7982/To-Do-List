@@ -1,3 +1,62 @@
-# To-Do-List
 
-[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/stackblitz-starters-fznd8b)
+# To-Do List App
+
+A simple To-Do List application built using ReactJS to help you manage your tasks and stay organized.
+
+![image](https://github.com/divyan7982/To-Do-List/assets/131895243/1e3e6721-2679-445b-bbb9-50f5d661123b)
+
+## Features
+
+- Add tasks with titles.
+- Delete tasks you no longer need.
+- Responsive design for a seamless experience on various devices.
+- Made using ReactJS Framework.
+
+## Installation
+
+1. Clone this repository to your local machine:
+
+   ```
+   git clone https://github.com/divya2708/react-todo-list-app.git
+   ```
+
+2. Navigate to the project directory:
+
+   ```
+   cd react-To-Do-List
+   ```
+
+3. Install the dependencies:
+
+   ```
+   npm install
+   ```
+
+4. Start the development server:
+
+   ```
+   npm start
+   ```
+
+5. Access the app in your web browser at: `http://localhost:3000`
+
+## Usage
+
+1. Add a new task by entering a title ,then click the "+" button.
+2. To delete a task, click the "Delete" icon next to the task.
+![image](https://github.com/divyan7982/To-Do-List/assets/131895243/a04ff4d3-c789-43e2-a573-283edddca721)
+
+## Contributing
+
+Contributions are welcome! If you find a bug or have an enhancement in mind, please follow these steps:
+
+1. Fork this repository.
+2. Create a new branch with a descriptive name.
+3. Make your changes and test thoroughly.
+4. Submit a pull request explaining your changes.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
+
