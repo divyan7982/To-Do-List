@@ -98,11 +98,3 @@ li button:hover {
   background-color: #c82333;
 }
 
-li.completed {
-  background-color: #eaf7ea;
-  color: #6c757d;
-}
-
-li.completed span {
-  text-decoration: line-through;
-}
