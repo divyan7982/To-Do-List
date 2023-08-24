@@ -1,34 +1,43 @@
 import React, { useState } from 'react';
 import './style.css';
-import TodoInput from './components/TodoInput';
-import Todolist from './components/TodoList';
+import TaskList from './components/TaskList';
+
 function App() {
-  const [listTodo, setListTodo] = useState([]);
-  let addList = (inputText) => {
-    if (inputText !== '') setListTodo([...listTodo, inputText]);
+  const [tasks, setTasks] = useState([]);
+  const [newTask, setNewTask] = useState('');
+
+  const addTask = () => {
+    if (newTask.trim() !== '') {
+      setTasks([...tasks, newTask]);
+      setNewTask('');
+    }
   };
-  const deleteListItem = (key) => {
-    let newListTodo = [...listTodo];
-    newListTodo.splice(key, 1);
-    setListTodo([...newListTodo]);
+
+  const deleteTask = (index) => {
+    const updatedTasks = tasks.filter((_, i) => i !== index);
+    setTasks(updatedTasks);
   };
+
+  const editTask = (index, updatedTask) => {
+    const updatedTasks = tasks.map((task, i) =>
+      i === index ? updatedTask : task
+    );
+    setTasks(updatedTasks);
+  };
+
   return (
-    <div className="main-container">
-      <div className="center-container">
-        <TodoInput addList={addList} />
-        <h1 className="app-heading">TODO</h1>
-        <hr />
-        {listTodo.map((listItem, i) => {
-          return (
-            <Todolist
-              key={i}
-              index={i}
-              item={listItem}
-              deleteItem={deleteListItem}
-            />
-          );
-        })}
+    <div className="App">
+      <h1>To-Do List</h1>
+      <div className="task-container">
+        <input
+          type="text"
+          placeholder="Add a new task"
+          value={newTask}
+          onChange={(e) => setNewTask(e.target.value)}
+        />
+        <button onClick={addTask}>Add</button>
       </div>
+      <TaskList tasks={tasks} editTask={editTask} deleteTask={deleteTask} />
     </div>
   );
 }
