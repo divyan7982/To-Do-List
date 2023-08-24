@@ -3,8 +3,6 @@
 
 A simple To-Do List application built using ReactJS to help you manage your tasks and stay organized.
 
-![image](https://github.com/divyan7982/To-Do-List/assets/131895243/1e3e6721-2679-445b-bbb9-50f5d661123b)
-
 ## Features
 
 - Add tasks with titles.
