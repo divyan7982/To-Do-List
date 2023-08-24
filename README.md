@@ -42,7 +42,6 @@ A simple To-Do List application built using ReactJS to help you manage your task
 
 1. Add a new task by entering a title ,then click the "+" button.
 2. To delete a task, click the "Delete" icon next to the task.
-![image](https://github.com/divyan7982/To-Do-List/assets/131895243/a04ff4d3-c789-43e2-a573-283edddca721)
 
 ## Contributing
 
