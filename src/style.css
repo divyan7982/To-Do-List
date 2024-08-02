@@ -127,3 +127,34 @@ li button:last-of-type {
 li button:last-of-type:hover {
   background-color: #27ae60;
 }
+
+.task-details {
+  padding: 0.5rem;
+  background-color: #f9f9f9;
+  border-top: 1px solid #e0e4f0;
+  margin-top: 0.5rem;
+  border-radius: 0 0 8px 8px;
+}
+
+.task-details p {
+  margin: 0;
+  color: #555555;
+}
+
+.search-container {
+  margin: 1.5rem 0;
+}
+
+.search-container input {
+  width: calc(100% - 1.5rem);
+  padding: 0.75rem;
+  border: 2px solid #e0e4f0;
+  border-radius: 8px;
+  background-color: #f7f9fc;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.search-container input:focus {
+  border-color: #80bdff;
+  background-color: #eef3ff;
+}

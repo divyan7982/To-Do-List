@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 
-const TaskItem = ({ index, task, editTask, deleteTask, toggleComplete }) => {
+const TaskItem = ({ task, index, editTask, deleteTask, toggleComplete }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [updatedTask, setUpdatedTask] = useState(task.task);
   const [isCompleted, setIsCompleted] = useState(task.completed);
+  const [isExpanded, setIsExpanded] = useState(false); // New state for expandable list
 
   const handleEdit = () => {
     if (updatedTask.trim() !== '') {
-      editTask(index, updatedTask);
+      editTask(index, { ...task, task: updatedTask, lastUpdate: new Date().toISOString() });
       setIsEditing(false);
     }
   };
@@ -17,26 +18,40 @@ const TaskItem = ({ index, task, editTask, deleteTask, toggleComplete }) => {
     setIsCompleted(!isCompleted);
   };
 
+  const toggleExpand = () => {
+    setIsExpanded(!isExpanded);
+  };
+
   return (
     <li style={{ textDecoration: isCompleted ? 'line-through' : 'none' }}>
-      {isEditing ? (
-        <>
-          <input
-            type="text"
-            value={updatedTask}
-            onChange={(e) => setUpdatedTask(e.target.value)}
-          />
-          <button onClick={handleEdit}>Save</button>
-        </>
-      ) : (
-        <>
-          <span>{task.task}</span> {/* Ensure you are rendering task.task */}
-          <button onClick={() => setIsEditing(true)}>Edit</button>
-          <button onClick={() => deleteTask(index)}>Delete</button>
-          <button onClick={handleComplete}>
-            {isCompleted ? 'Undo' : 'Done'}
-          </button>
-        </>
+      <div>
+        {isEditing ? (
+          <>
+            <input
+              type="text"
+              value={updatedTask}
+              onChange={(e) => setUpdatedTask(e.target.value)}
+            />
+            <button onClick={handleEdit}>Save</button>
+          </>
+        ) : (
+          <>
+            <span onClick={toggleExpand} style={{ cursor: 'pointer' }}>
+              {task.task}
+            </span>
+            <button onClick={() => setIsEditing(true)}>Edit</button>
+            <button onClick={() => deleteTask(index)}>Delete</button>
+            <button onClick={handleComplete}>
+              {isCompleted ? 'Undo' : 'Done'}
+            </button>
+          </>
+        )}
+      </div>
+      {isExpanded && (
+        <div className="task-details">
+          <p>{task.description}</p>
+          <p>Last Updated: {new Date(task.lastUpdate).toLocaleString()}</p>
+        </div>
       )}
     </li>
   );

@@ -1,34 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './style.css';
 import TaskList from './components/TaskList';
 
 function App() {
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState('');
+  const [taskDescription, setTaskDescription] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
-
-  // Load tasks from JSON file
-  useEffect(() => {
-    fetch('/tasks.json')
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then((data) => setTasks(data))
-      .catch((error) => console.error('Fetch error:', error));
-  }, []);
 
   const addTask = () => {
     if (newTask.trim() !== '') {
       const newTaskObj = {
-        id: tasks.length + 1, // Simple ID generation
+        id: Date.now(),
         task: newTask,
-        completed: false
+        completed: false,
+        description: taskDescription,
+        lastUpdate: new Date().toISOString(),
       };
       setTasks([...tasks, newTaskObj]);
       setNewTask('');
+      setTaskDescription('');
     }
   };
 
@@ -39,19 +30,19 @@ function App() {
 
   const editTask = (index, updatedTask) => {
     const updatedTasks = tasks.map((task, i) =>
-      i === index ? { ...task, task: updatedTask } : task
+      i === index ? updatedTask : task
     );
     setTasks(updatedTasks);
   };
 
   const toggleComplete = (index) => {
     const updatedTasks = tasks.map((task, i) =>
-      i === index ? { ...task, completed: !task.completed } : task
+      i === index ? { ...task, completed: !task.completed, lastUpdate: new Date().toISOString() } : task
     );
     setTasks(updatedTasks);
   };
 
-  const filteredTasks = tasks.filter((task) =>
+  const filteredTasks = tasks.filter(task =>
     task.task.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
@@ -65,9 +56,15 @@ function App() {
           value={newTask}
           onChange={(e) => setNewTask(e.target.value)}
         />
+        <input
+          type="text"
+          placeholder="Add a task description"
+          value={taskDescription}
+          onChange={(e) => setTaskDescription(e.target.value)}
+        />
         <button onClick={addTask}>Add</button>
       </div>
-      <div className="task-container">
+      <div className="search-container">
         <input
           type="text"
           placeholder="Search tasks"
