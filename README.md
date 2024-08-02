@@ -22,7 +22,7 @@ A simple To-Do List application built using ReactJS to help you manage your task
 1. Clone this repository to your local machine:
 
    ```
-   git clone https://github.com/divya2708/react-todo-list-app.git
+   git clone https://github.com/divya7982/react-todo-list-app.git
    ```
 
 2. Navigate to the project directory:
